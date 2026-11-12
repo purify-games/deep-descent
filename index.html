@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Descent</title>
+<meta name="description" content="A roguelite dungeon shooter by Purify Games. Five chapters, five bosses, three weapons. Play it free in your browser.">
+<meta property="og:title" content="Deep Descent">
+<meta property="og:description" content="A roguelite dungeon shooter by Purify Games. Play it free in your browser.">
+<meta property="og:image" content="assets/banner.png">
+<meta name="theme-color" content="#14131b">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main>
+
+<section class="floor crypt" aria-labelledby="play-title">
+  <div class="room hero">
+    <h1 id="play-title" class="title">Deep Descent</h1>
+    <p class="lede">A roguelite dungeon shooter. Clear the rooms, spend your coins, beat the boss at the bottom of each chapter, and keep going down.</p>
+
+    <div class="screen" id="screen">
+      <img class="poster" src="assets/shots/crypt.png" alt="" width="1920" height="1080">
+      <button class="play" id="play" type="button">Play</button>
+    </div>
+
+    <div class="screen-actions">
+      <button class="secondary" id="fullscreen" type="button" hidden>Full screen</button>
+      <a class="secondary" href="play/" id="own-page">Open on its own page</a>
+      <a class="secondary" href="https://purify-games.itch.io/deep-descent">Play on itch.io</a>
+    </div>
+    <p class="fine" id="screen-note">Free, about 24 MB to load. Keyboard and mouse, or a phone or tablet held sideways; on a phone, open the game on its own page. Needs a browser with WebGL 2: current Chrome, Firefox, Edge or Safari.</p>
+  </div>
+</section>
+
+<div class="wall crypt-wall" aria-hidden="true"></div>
+
+<section class="floor forest" aria-labelledby="weapons-title">
+  <div class="room">
+    <p class="chapter">Chapter 2, Forest</p>
+    <h2 id="weapons-title">Two hands, three guns</h2>
+    <p>You start with the Pistol and can carry two weapons. Shops sometimes sell another; trade the one in your hand and you can swap back for free before you leave. Every Damage upgrade makes all three hit harder.</p>
+    <ul class="weapons">
+      <li>
+        <img src="assets/weapons/pistol.png" alt="" width="48" height="48">
+        <div>
+          <h3>Pistol</h3>
+          <p>Steady and mid range. The one you start with.</p>
+        </div>
+      </li>
+      <li>
+        <img src="assets/weapons/sniper.png" alt="" width="48" height="48">
+        <div>
+          <h3>Sniper Rifle</h3>
+          <p>Long range and slow. Half damage up close, double from twelve tiles away, and each shot bounces off one wall.</p>
+        </div>
+      </li>
+      <li>
+        <img src="assets/weapons/shotgun.png" alt="" width="48" height="48">
+        <div>
+          <h3>Shotgun</h3>
+          <p>Three pellets in a tight cone. Half damage each, so one and a half times the Pistol when they all land, but only at short range.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="wall forest-wall" aria-hidden="true"></div>
+
+<section class="floor glacier" aria-labelledby="run-title">
+  <div class="room">
+    <p class="chapter">Chapter 3, Glacier</p>
+    <h2 id="run-title">How a floor goes</h2>
+    <ol class="steps">
+      <li><strong>Clear the rooms.</strong> The doors lock until every enemy is down. Slimes, archers, dashers, bouncers and laser snipers come in groups that play off each other.</li>
+      <li><strong>Pick up the coins.</strong> They are your score, and your money.</li>
+      <li><strong>Shop and open chests.</strong> Upgrades stack into a build: Piercing, Projectile Speed, Vampirism, Glass Cannon, Dash, Second Wind and more.</li>
+      <li><strong>Take the portal down.</strong> Every fifth floor ends with a boss that has its own move to learn.</li>
+    </ol>
+    <p>Five chapters of five floors, then an endless Arcade. Every floor comes from a seed, so a save code from the pause menu brings you back to the same floor in any browser.</p>
+    <p>Easy gives you more hearts. Hard changes how enemies fight: slimes split, archers lead their shots, dashers dash three times in a row. Beat the game once and Boss Rush opens: all five bosses back to back, against the clock.</p>
+  </div>
+</section>
+
+<div class="wall glacier-wall" aria-hidden="true"></div>
+
+<section class="floor forge" aria-labelledby="shots-title">
+  <div class="room wide">
+    <p class="chapter">Chapter 4, Forge</p>
+    <h2 id="shots-title">Down through the chapters</h2>
+    <ul class="shots">
+      <li><a href="assets/shots/crypt.png"><img src="assets/shots/crypt.png" alt="A fight in the Crypt, stage 0-2" loading="lazy" width="1920" height="1080"></a><span>Crypt</span></li>
+      <li><a href="assets/shots/forest.png"><img src="assets/shots/forest.png" alt="Dashers in the Forest, stage 1-2" loading="lazy" width="1920" height="1080"></a><span>Forest</span></li>
+      <li><a href="assets/shots/glacier.png"><img src="assets/shots/glacier.png" alt="A slime swarm on the Glacier, with the Shotgun" loading="lazy" width="1920" height="1080"></a><span>Glacier</span></li>
+      <li><a href="assets/shots/forge.png"><img src="assets/shots/forge.png" alt="A Sniper Rifle fight in the Forge" loading="lazy" width="1920" height="1080"></a><span>Forge</span></li>
+      <li><a href="assets/shots/void.png"><img src="assets/shots/void.png" alt="Laser snipers in the Void" loading="lazy" width="1920" height="1080"></a><span>Void</span></li>
+      <li><a href="assets/shots/boss.png"><img src="assets/shots/boss.png" alt="The Overlord, the last boss" loading="lazy" width="1920" height="1080"></a><span>The Overlord</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="wall forge-wall" aria-hidden="true"></div>
+
+<section class="floor void" aria-labelledby="controls-title">
+  <div class="room">
+    <p class="chapter">Chapter 5, Void</p>
+    <h2 id="controls-title">Controls</h2>
+    <div class="controls">
+      <table>
+        <caption>Keyboard and mouse</caption>
+        <tbody>
+          <tr><th scope="row">Move</th><td>WASD or arrow keys</td></tr>
+          <tr><th scope="row">Shoot</th><td>Hold the left mouse button, or Space</td></tr>
+          <tr><th scope="row">Swap weapon</th><td>Q or the mouse wheel</td></tr>
+          <tr><th scope="row">Dash</th><td>Shift, once you own the Dash</td></tr>
+          <tr><th scope="row">Use</th><td>E, for chests, shops and the portal</td></tr>
+          <tr><th scope="row">Pause</th><td>Esc or P</td></tr>
+          <tr><th scope="row">Sound, screen shake</th><td>M, N</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <caption>Touch</caption>
+        <tbody>
+          <tr><th scope="row">Move</th><td>Left thumb, anywhere on the left</td></tr>
+          <tr><th scope="row">Shoot</th><td>Right thumb: it shoots the way you push</td></tr>
+          <tr><th scope="row">Dash, Swap</th><td>The buttons above the right thumb</td></tr>
+          <tr><th scope="row">Use</th><td>The button that lights up by the left thumb</td></tr>
+          <tr><th scope="row">Pause</th><td>The button next to the stage name</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Your settings and best scores stay in this browser. Clearing the site's data resets them; a save code carries a run anywhere.</p>
+
+    <h2 id="credits-title">Credits</h2>
+    <dl class="credits">
+      <div><dt>Developing studio</dt><dd>Purify Games</dd></div>
+      <div><dt>Game designer</dt><dd>Oleksandr Heza</dd></div>
+      <div><dt>Lead developer</dt><dd>Oleksandr Heza</dd></div>
+      <div><dt>Artists</dt><dd>Oleksandr and Davyd Heza</dd></div>
+      <div><dt>UI and HUD</dt><dd>Claude</dd></div>
+      <div><dt>QC</dt><dd>Oleksandr Heza and Claude</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="bottom">
+  <p>Deep Descent v2.0 "Forest", made by Purify Games with Godot. AI (Claude) helped port the game to Godot and finalise its gameplay.</p>
+  <p><a href="#play-title">Back to the top</a> or <a href="https://purify-games.itch.io/deep-descent">find it on itch.io</a></p>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

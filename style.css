@@ -1,0 +1,232 @@
+/* Deep Descent site. The page is the dungeon: each section is a chapter's
+   floor (its real 16 px tile, shown at 4x), the bands between them are its
+   walls, and the content sits in a dark room panel with notched pixel corners. */
+
+@font-face {
+  font-family: "Jersey 10";
+  src: url("assets/fonts/Jersey10-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --room: #15141c;
+  --room-edge: #2c2a3a;
+  --ink: #ecebf3;
+  --dim: #a7a4b8;
+  --coin: #f2c14e;
+  --coin-dark: #a8761c;
+  --deep: #09080d;
+  --tile: 64px;
+  --pixel: 4px;
+  --display: "Jersey 10", "Courier New", monospace;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--deep);
+  color: var(--ink);
+  font: 18px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { image-rendering: pixelated; }
+
+a { color: var(--coin); text-underline-offset: 3px; }
+a:hover { color: #ffd978; }
+:focus-visible { outline: 3px solid var(--coin); outline-offset: 3px; }
+
+/* --- floors and walls ------------------------------------------------------ */
+
+.floor {
+  padding: calc(var(--tile) * 1.5) 16px;
+  background-size: auto, var(--tile) var(--tile);
+  image-rendering: pixelated;
+}
+.crypt   { background-image: linear-gradient(#0f0e15b8, #0f0e15d9), url("assets/tiles/floor_crypt.png"); }
+.forest  { background-image: linear-gradient(#0d150eb3, #0d150ed0), url("assets/tiles/floor_forest.png"); }
+.glacier { background-image: linear-gradient(#0b1a1ec4, #0b1a1ee0), url("assets/tiles/floor_glacier.png"); }
+.forge   { background-image: linear-gradient(#1a0f08bd, #1a0f08dc), url("assets/tiles/floor_forge.png"); }
+.void    { background-image: linear-gradient(#14061cc4, #14061ce6), url("assets/tiles/floor_void.png"); }
+
+.wall {
+  height: var(--tile);
+  background-size: var(--tile) var(--tile);
+  image-rendering: pixelated;
+  box-shadow: inset 0 10px 14px -8px #000c, inset 0 -10px 14px -8px #000c;
+}
+.crypt-wall   { background-image: url("assets/tiles/wall_crypt.png"); }
+.forest-wall  { background-image: url("assets/tiles/wall_forest.png"); }
+.glacier-wall { background-image: url("assets/tiles/wall_glacier.png"); }
+.forge-wall   { background-image: url("assets/tiles/wall_forge.png"); }
+
+/* --- rooms ------------------------------------------------------------------ */
+
+.room {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 44px 44px;
+  background: var(--room);
+  box-shadow: 0 0 0 var(--pixel) var(--room-edge), 0 18px 40px #000a;
+  clip-path: polygon(
+    0 var(--pixel), var(--pixel) var(--pixel), var(--pixel) 0,
+    calc(100% - var(--pixel)) 0, calc(100% - var(--pixel)) var(--pixel), 100% var(--pixel),
+    100% calc(100% - var(--pixel)), calc(100% - var(--pixel)) calc(100% - var(--pixel)), calc(100% - var(--pixel)) 100%,
+    var(--pixel) 100%, var(--pixel) calc(100% - var(--pixel)), 0 calc(100% - var(--pixel)));
+  border: var(--pixel) solid var(--room-edge);
+}
+.room.wide { max-width: 1120px; }
+.room > :first-child { margin-top: 0; }
+.room > :last-child { margin-bottom: 0; }
+
+h1, h2, h3, .chapter, .play, .secondary, caption, .shots span {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+h1 { margin: 0 0 14px; }
+/* The game's logo lettering: coin gold, extruded in pixel steps. */
+.title {
+  font-size: clamp(64px, 12vw, 120px);
+  line-height: 0.85;
+  color: var(--coin);
+  text-shadow:
+    0 4px 0 var(--coin-dark), 0 8px 0 #5c3a0a,
+    4px 8px 0 #2a1a02, 0 12px 0 #2a1a02;
+}
+h2 { font-size: 56px; line-height: 1; margin: 0 0 20px; color: var(--ink); }
+h2 + p, .chapter + h2 { margin-top: 0; }
+h3 { font-size: 32px; line-height: 1; margin: 0 0 4px; color: var(--coin); }
+.chapter { font-size: 26px; line-height: 1; color: var(--coin); margin: 0 0 6px; }
+p { margin: 0 0 16px; max-width: 64ch; }
+.fine { font-size: 15px; color: var(--dim); }
+
+/* --- hero and the playable screen ------------------------------------------ */
+
+.hero { max-width: 1040px; }
+.lede { font-size: 21px; max-width: 46ch; margin-bottom: 28px; }
+
+.screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  box-shadow: 0 0 0 var(--pixel) #000, 0 0 0 calc(var(--pixel) * 2) var(--coin-dark);
+  margin: 0 var(--pixel) 20px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.screen .poster {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.42) saturate(0.85);
+}
+.screen iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  background: #000;
+}
+
+.play {
+  position: relative;
+  font-size: 56px;
+  line-height: 1;
+  padding: 14px 52px 18px;
+  color: #2a1a02;
+  background: var(--coin);
+  border: 0;
+  cursor: pointer;
+  box-shadow:
+    inset 0 calc(var(--pixel) * -2) 0 var(--coin-dark),
+    0 0 0 var(--pixel) #2a1a02,
+    0 calc(var(--pixel) * 2) 0 var(--pixel) #2a1a02;
+}
+.play:hover { background: #ffd36b; }
+.play:active { transform: translateY(var(--pixel)); box-shadow: inset 0 calc(var(--pixel) * -1) 0 var(--coin-dark), 0 0 0 var(--pixel) #2a1a02; }
+.play[disabled] { cursor: progress; }
+
+.screen-actions { display: flex; flex-wrap: wrap; gap: 12px 16px; margin: 0 0 14px; }
+.secondary {
+  font-size: 24px;
+  line-height: 1;
+  padding: 10px 16px 12px;
+  color: var(--ink);
+  background: #24222f;
+  border: 0;
+  box-shadow: inset 0 0 0 2px var(--room-edge);
+  text-decoration: none;
+  cursor: pointer;
+}
+.secondary:hover { background: #2f2c3d; color: var(--ink); }
+
+/* --- weapons ---------------------------------------------------------------- */
+
+.weapons { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 22px; }
+.weapons li { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: start; }
+.weapons img {
+  width: 64px; height: 64px;
+  background: #0d0c12;
+  box-shadow: 0 0 0 2px var(--room-edge);
+  padding: 8px;
+}
+.weapons p { margin: 0; color: var(--dim); }
+
+/* --- a floor, step by step --------------------------------------------------- */
+
+.steps { margin: 0 0 22px; padding: 0; list-style: none; counter-reset: step; }
+.steps li { counter-increment: step; position: relative; padding: 0 0 14px 52px; }
+.steps li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: -4px;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  font: 30px/1 var(--display);
+  color: #2a1a02; background: var(--coin);
+  box-shadow: inset 0 -3px 0 var(--coin-dark);
+}
+.steps strong { color: var(--ink); }
+
+/* --- screenshots -------------------------------------------------------------- */
+
+.shots { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.shots li { margin: 0; }
+.shots a { display: block; box-shadow: 0 0 0 var(--pixel) #000; }
+.shots img { display: block; width: 100%; height: auto; image-rendering: auto; }
+.shots span { display: block; font-size: 26px; color: var(--coin); margin-top: 8px; }
+
+/* --- controls and credits ----------------------------------------------------- */
+
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 0 0 22px; }
+table { border-collapse: collapse; width: 100%; font-size: 16px; }
+caption { text-align: left; font-size: 28px; color: var(--coin); padding-bottom: 6px; }
+th, td { text-align: left; vertical-align: top; padding: 7px 0; border-bottom: 2px solid #23212e; }
+th { font-weight: 700; padding-right: 14px; white-space: nowrap; color: var(--ink); }
+td { color: var(--dim); }
+
+.void h2 + .controls { margin-top: 4px; }
+#credits-title { margin-top: 40px; }
+.credits { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; }
+.credits dt { font-size: 15px; color: var(--dim); }
+.credits dd { margin: 0; font: 28px/1.1 var(--display); color: var(--ink); }
+
+.bottom { padding: 28px 16px 40px; text-align: center; font-size: 15px; color: var(--dim); background: var(--deep); }
+.bottom p { margin: 0 auto 6px; }
+
+/* --- phones -------------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  :root { --tile: 48px; }
+  body { font-size: 17px; }
+  .floor { padding: var(--tile) 12px; }
+  .room { padding: 26px 20px 28px; }
+  h2 { font-size: 44px; }
+  .play { font-size: 44px; padding: 10px 36px 14px; }
+  .shots, .controls, .credits { grid-template-columns: 1fr; }
+}
