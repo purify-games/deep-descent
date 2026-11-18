@@ -190,4 +190,6 @@ kbd { font: 20px/1 var(--display); padding: 2px 7px 4px; background: #24222f; bo
   .band h2 { font-size: 60px; }
   .new h2, .arsenal h2, .end h2 { font-size: 44px; }
   .play { font-size: 38px; }
+  /* Two lines on a phone: room for the extruded shadow between them. */
+  .title { line-height: 1.05; }
 }

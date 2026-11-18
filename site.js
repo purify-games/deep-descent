@@ -11,7 +11,7 @@
 
   if (touch) {
     // Small screens play best on the game's own page, held sideways.
-    note.textContent = "Free, about 14 MB. On a phone or tablet, Play opens the game on its own page: hold it sideways, left thumb to move, right thumb to shoot.";
+    note.textContent = "Free, about 14 MB. On a phone, Play opens the game on its own page: hold it sideways, left thumb to move, right thumb to shoot.";
   }
 
   function play() {
