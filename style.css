@@ -1,6 +1,7 @@
-/* Deep Descent site. The page is the dungeon: each section is a chapter's
-   floor (its real 16 px tile, shown at 4x), the bands between them are its
-   walls, and the content sits in a dark room panel with notched pixel corners. */
+/* Deep Descent site: "The Descent". The page goes down through the game:
+   the hero is the Crypt's floor, then one band per chapter, each on its real
+   16 px floor tile (shown at 4x) under a strip of its wall, then the arsenal
+   and the Void at the bottom. */
 
 @font-face {
   font-family: "Jersey 10";
@@ -9,24 +10,23 @@
 }
 
 :root {
+  --deep: #09080d;
   --room: #15141c;
-  --room-edge: #2c2a3a;
+  --edge: #2c2a3a;
   --ink: #ecebf3;
   --dim: #a7a4b8;
   --coin: #f2c14e;
   --coin-dark: #a8761c;
-  --deep: #09080d;
+  --coin-ink: #2a1a02;
   --tile: 64px;
-  --pixel: 4px;
+  --px: 4px;
   --display: "Jersey 10", "Courier New", monospace;
   --body: "Atkinson Hyperlegible", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
 body {
   margin: 0;
   background: var(--deep);
@@ -34,199 +34,160 @@ body {
   font: 18px/1.6 var(--body);
   -webkit-font-smoothing: antialiased;
 }
-
-img { image-rendering: pixelated; }
-
+img { image-rendering: pixelated; display: block; max-width: 100%; }
 a { color: var(--coin); text-underline-offset: 3px; }
 a:hover { color: #ffd978; }
 :focus-visible { outline: 3px solid var(--coin); outline-offset: 3px; }
-
-/* --- floors and walls ------------------------------------------------------ */
-
-.floor {
-  padding: calc(var(--tile) * 1.5) 16px;
-  background-size: auto, var(--tile) var(--tile);
-  image-rendering: pixelated;
-}
-.crypt   { background-image: linear-gradient(#0f0e15b8, #0f0e15d9), url("assets/tiles/floor_crypt.png"); }
-.forest  { background-image: linear-gradient(#0d150eb3, #0d150ed0), url("assets/tiles/floor_forest.png"); }
-.glacier { background-image: linear-gradient(#0b1a1ec4, #0b1a1ee0), url("assets/tiles/floor_glacier.png"); }
-.forge   { background-image: linear-gradient(#1a0f08bd, #1a0f08dc), url("assets/tiles/floor_forge.png"); }
-.void    { background-image: linear-gradient(#14061cc4, #14061ce6), url("assets/tiles/floor_void.png"); }
-
-.wall {
-  height: var(--tile);
-  background-size: var(--tile) var(--tile);
-  image-rendering: pixelated;
-  box-shadow: inset 0 10px 14px -8px #000c, inset 0 -10px 14px -8px #000c;
-}
-.crypt-wall   { background-image: url("assets/tiles/wall_crypt.png"); }
-.forest-wall  { background-image: url("assets/tiles/wall_forest.png"); }
-.glacier-wall { background-image: url("assets/tiles/wall_glacier.png"); }
-.forge-wall   { background-image: url("assets/tiles/wall_forge.png"); }
-
-/* --- rooms ------------------------------------------------------------------ */
-
-.room {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 40px 44px 44px;
-  background: var(--room);
-  box-shadow: 0 0 0 var(--pixel) var(--room-edge), 0 18px 40px #000a;
-  clip-path: polygon(
-    0 var(--pixel), var(--pixel) var(--pixel), var(--pixel) 0,
-    calc(100% - var(--pixel)) 0, calc(100% - var(--pixel)) var(--pixel), 100% var(--pixel),
-    100% calc(100% - var(--pixel)), calc(100% - var(--pixel)) calc(100% - var(--pixel)), calc(100% - var(--pixel)) 100%,
-    var(--pixel) 100%, var(--pixel) calc(100% - var(--pixel)), 0 calc(100% - var(--pixel)));
-  border: var(--pixel) solid var(--room-edge);
-}
-.room.wide { max-width: 1120px; }
-.room > :first-child { margin-top: 0; }
-.room > :last-child { margin-bottom: 0; }
-
-h1, h2, h3, .chapter, .play, .secondary, caption, .shots span {
+h1, h2, h3, .kicker, .play, .secondary, .tag, .chip, summary, .band-meta dt, .stage {
   font-family: var(--display);
   font-weight: 400;
-  letter-spacing: 0.01em;
 }
-h1 { margin: 0 0 14px; }
-/* The game's logo lettering: coin gold, extruded in pixel steps. */
-.title {
-  font-size: clamp(64px, 12vw, 120px);
-  line-height: 0.85;
-  color: var(--coin);
-  text-shadow:
-    0 4px 0 var(--coin-dark), 0 8px 0 #5c3a0a,
-    4px 8px 0 #2a1a02, 0 12px 0 #2a1a02;
-}
-h2 { font-size: 56px; line-height: 1; margin: 0 0 20px; color: var(--ink); }
-h2 + p, .chapter + h2 { margin-top: 0; }
-h3 { font-size: 32px; line-height: 1; margin: 0 0 4px; color: var(--coin); }
-.chapter { font-size: 26px; line-height: 1; color: var(--coin); margin: 0 0 6px; }
-p { margin: 0 0 16px; max-width: 64ch; }
-.fine { font-size: 15px; color: var(--dim); }
+p { margin: 0 0 14px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.fine { font-size: 15px; color: var(--dim); margin-top: 18px; max-width: 46ch; }
 
 /* --- hero and the playable screen ------------------------------------------ */
 
-.hero { max-width: 1040px; }
-.lede { font-size: 21px; max-width: 46ch; margin-bottom: 28px; }
+.hero {
+  padding: 56px 0 72px;
+  background: linear-gradient(#0f0e15b0, var(--deep) 92%), url("assets/tiles/floor_crypt.png") 0 0 / var(--tile) var(--tile);
+}
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
+.tag {
+  display: inline-block; font-size: 22px; line-height: 1; padding: 6px 10px 8px; margin-bottom: 22px;
+  color: var(--coin-ink); background: var(--coin); box-shadow: inset 0 -3px 0 var(--coin-dark); text-decoration: none;
+}
+.tag:hover { color: var(--coin-ink); background: #ffd36b; }
+/* The game's logo lettering: coin gold, extruded in pixel steps. */
+.title {
+  font-size: clamp(72px, 11vw, 132px); line-height: .82; margin: 0 0 22px; color: var(--coin);
+  text-shadow: 0 4px 0 var(--coin-dark), 0 8px 0 #5c3a0a, 4px 8px 0 #2a1a02, 0 12px 0 #2a1a02;
+}
+.lede { font-size: 21px; max-width: 34ch; margin-bottom: 26px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: center; }
 
-.screen {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  box-shadow: 0 0 0 var(--pixel) #000, 0 0 0 calc(var(--pixel) * 2) var(--coin-dark);
-  margin: 0 var(--pixel) 20px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-.screen .poster {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(0.42) saturate(0.85);
-}
-.screen iframe {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  border: 0;
-  background: #000;
-}
-
-.play {
-  position: relative;
-  font-size: 56px;
-  line-height: 1;
-  padding: 14px 52px 18px;
-  color: #2a1a02;
-  background: var(--coin);
-  border: 0;
-  cursor: pointer;
-  box-shadow:
-    inset 0 calc(var(--pixel) * -2) 0 var(--coin-dark),
-    0 0 0 var(--pixel) #2a1a02,
-    0 calc(var(--pixel) * 2) 0 var(--pixel) #2a1a02;
-}
-.play:hover { background: #ffd36b; }
-.play:active { transform: translateY(var(--pixel)); box-shadow: inset 0 calc(var(--pixel) * -1) 0 var(--coin-dark), 0 0 0 var(--pixel) #2a1a02; }
-.play[disabled] { cursor: progress; }
-
-.screen-actions { display: flex; flex-wrap: wrap; gap: 12px 16px; margin: 0 0 14px; }
 .secondary {
-  font-size: 24px;
-  line-height: 1;
-  padding: 10px 16px 12px;
-  color: var(--ink);
-  background: #24222f;
-  border: 0;
-  box-shadow: inset 0 0 0 2px var(--room-edge);
-  text-decoration: none;
-  cursor: pointer;
+  font-size: 26px; line-height: 1; padding: 11px 18px 13px; color: var(--ink); background: #24222f;
+  border: 0; box-shadow: inset 0 0 0 2px var(--edge); text-decoration: none; cursor: pointer;
 }
 .secondary:hover { background: #2f2c3d; color: var(--ink); }
-
-/* --- weapons ---------------------------------------------------------------- */
-
-.weapons { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 22px; }
-.weapons li { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: start; }
-.weapons img {
-  width: 64px; height: 64px;
-  background: #0d0c12;
-  box-shadow: 0 0 0 2px var(--room-edge);
-  padding: 8px;
+.secondary[hidden] { display: none; }
+.play {
+  font-size: 44px; line-height: 1; padding: 10px 40px 14px; color: var(--coin-ink); background: var(--coin);
+  border: 0; cursor: pointer;
+  box-shadow: inset 0 -8px 0 var(--coin-dark), 0 0 0 var(--px) var(--coin-ink), 0 8px 0 var(--px) var(--coin-ink);
 }
-.weapons p { margin: 0; color: var(--dim); }
+.play:hover { background: #ffd36b; }
+.play:active { transform: translateY(var(--px)); box-shadow: inset 0 -4px 0 var(--coin-dark), 0 0 0 var(--px) var(--coin-ink); }
 
-/* --- a floor, step by step --------------------------------------------------- */
+.screen {
+  position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden;
+  box-shadow: 0 0 0 var(--px) #000, 0 0 0 calc(var(--px) * 2) var(--coin-dark), 0 30px 60px #000c;
+}
+.screen img { width: 100%; height: 100%; object-fit: cover; }
+.screen .over {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  background: radial-gradient(closest-side, #000a, #0000 70%);
+}
+.screen .over .play { font-size: 36px; padding: 8px 30px 12px; }
+.screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
 
-.steps { margin: 0 0 22px; padding: 0; list-style: none; counter-reset: step; }
-.steps li { counter-increment: step; position: relative; padding: 0 0 14px 52px; }
+/* --- new in this release ---------------------------------------------------------- */
+
+.new { padding: 8px 0 72px; }
+.kicker { font-size: 26px; line-height: 1; color: var(--coin); margin: 0 0 8px; }
+.new h2, .arsenal h2, .end h2 { font-size: 52px; line-height: 1; margin: 0 0 28px; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card { background: var(--room); border: var(--px) solid var(--edge); padding: 24px 24px 22px; }
+.card h3 { font-size: 32px; line-height: 1; color: var(--coin); margin: 0 0 10px; }
+.card p { color: var(--dim); margin: 0; }
+
+/* --- chapter bands ------------------------------------------------------------------- */
+
+.wall { height: 32px; background-size: 32px 32px; image-rendering: pixelated; box-shadow: inset 0 8px 12px -6px #000c, inset 0 -8px 12px -6px #000c; }
+.band { padding: 80px 0; background-size: auto, var(--tile) var(--tile); image-rendering: pixelated; }
+.band .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.band.flip .shot { order: 2; }
+.band h2 { font-size: 72px; line-height: .9; margin: 0 0 6px; }
+.band .stage { font-size: 24px; line-height: 1; color: var(--dim); margin: 0 0 22px; }
+.band p { max-width: 42ch; }
+
+/* Just the room, cut out of the full screenshot (HUD panels either side).
+   shortcut: the numbers fit the itch screenshots' layout (room at 533,122,
+   810 px square in 1875 x 1055); recapture at another size, redo them. */
+.shot { position: relative; aspect-ratio: 1; overflow: hidden; background: #000; box-shadow: 0 0 0 var(--px) #000, 0 24px 50px #000b; }
+.shot img { position: absolute; max-width: none; width: 231.48%; height: auto; left: -65.8%; top: -15.06%; }
+
+.band-meta { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; margin: 22px 0 0; }
+.band-meta dt { font-size: 24px; line-height: 1.2; color: var(--dim); }
+.band-meta dd { margin: 0; font: 24px/1.2 var(--display); color: var(--coin); }
+
+.steps { list-style: none; counter-reset: s; margin: 24px 0 0; padding: 0; display: grid; gap: 10px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: baseline; }
 .steps li::before {
-  content: counter(step);
-  position: absolute; left: 0; top: -4px;
-  width: 36px; height: 36px;
-  display: grid; place-items: center;
-  font: 30px/1 var(--display);
-  color: #2a1a02; background: var(--coin);
-  box-shadow: inset 0 -3px 0 var(--coin-dark);
+  content: counter(s); font: 26px/34px var(--display); text-align: center; height: 34px;
+  color: var(--coin-ink); background: var(--coin); box-shadow: inset 0 -3px 0 var(--coin-dark);
 }
-.steps strong { color: var(--ink); }
 
-/* --- screenshots -------------------------------------------------------------- */
+.crypt   { background-image: linear-gradient(#0f0e15c8, #0f0e15e6), url("assets/tiles/floor_crypt.png"); }
+.forest  { background-image: linear-gradient(#0d150ec0, #0d150ee0), url("assets/tiles/floor_forest.png"); }
+.glacier { background-image: linear-gradient(#0b1a1ecc, #0b1a1ee8), url("assets/tiles/floor_glacier.png"); }
+.forge   { background-image: linear-gradient(#1a0f08c8, #1a0f08e6), url("assets/tiles/floor_forge.png"); }
+.void    { background-image: linear-gradient(#14061cd0, #14061cee), url("assets/tiles/floor_void.png"); }
+.w-crypt   { background-image: url("assets/tiles/wall_crypt.png"); }
+.w-forest  { background-image: url("assets/tiles/wall_forest.png"); }
+.w-glacier { background-image: url("assets/tiles/wall_glacier.png"); }
+.w-forge   { background-image: url("assets/tiles/wall_forge.png"); }
+.w-void    { background-image: url("assets/tiles/wall_void.png"); }
 
-.shots { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-.shots li { margin: 0; }
-.shots a { display: block; box-shadow: 0 0 0 var(--pixel) #000; }
-.shots img { display: block; width: 100%; height: auto; image-rendering: auto; }
-.shots span { display: block; font-size: 26px; color: var(--coin); margin-top: 8px; }
+/* --- arsenal ------------------------------------------------------------------------- */
 
-/* --- controls and credits ----------------------------------------------------- */
+.arsenal { padding: 80px 0; background: var(--deep); }
+.weapons { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.weapons li {
+  background: var(--room); border: var(--px) solid var(--edge); padding: 20px;
+  display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start;
+}
+.weapons img { width: 72px; height: 72px; padding: 8px; background: #0d0c12; box-shadow: 0 0 0 2px var(--edge); }
+.weapons h3 { font-size: 30px; line-height: 1; color: var(--coin); margin: 2px 0 6px; }
+.weapons p { color: var(--dim); font-size: 16px; margin: 0; }
+details { margin-top: 24px; color: var(--dim); }
+summary { font-size: 24px; color: var(--ink); cursor: pointer; }
+details ul { margin: 12px 0 0; padding-left: 20px; font-size: 16px; max-width: 80ch; }
 
-.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 0 0 22px; }
-table { border-collapse: collapse; width: 100%; font-size: 16px; }
-caption { text-align: left; font-size: 28px; color: var(--coin); padding-bottom: 6px; }
-th, td { text-align: left; vertical-align: top; padding: 7px 0; border-bottom: 2px solid #23212e; }
-th { font-weight: 700; padding-right: 14px; white-space: nowrap; color: var(--ink); }
-td { color: var(--dim); }
+/* --- the bottom: modes, controls, credits ---------------------------------------------- */
 
-.void h2 + .controls { margin-top: 4px; }
-#credits-title { margin-top: 40px; }
-.credits { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; }
-.credits dt { font-size: 15px; color: var(--dim); }
-.credits dd { margin: 0; font: 28px/1.1 var(--display); color: var(--ink); }
+.end {
+  padding: 80px 0 40px;
+  background: linear-gradient(#14061ce0, var(--deep) 60%), url("assets/tiles/floor_void.png") 0 0 / var(--tile) var(--tile);
+  image-rendering: pixelated;
+}
+.modes { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 56px; padding: 0; list-style: none; }
+.chip { font-size: 24px; line-height: 1; padding: 8px 14px 10px; background: var(--room); box-shadow: inset 0 0 0 2px var(--edge); }
+.chip small { font: 15px var(--body); color: var(--dim); margin-left: 6px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+.cols h3 { font-size: 28px; color: var(--coin); margin: 0 0 12px; }
+.keys { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; font-size: 16px; }
+.keys dt { white-space: nowrap; }
+.keys dd { margin: 0; color: var(--dim); }
+kbd { font: 20px/1 var(--display); padding: 2px 7px 4px; background: #24222f; box-shadow: inset 0 -2px 0 #000, 0 0 0 1px var(--edge); color: var(--ink); }
+.credits { margin: 0; font-size: 16px; }
+.credits dt { color: var(--dim); font-size: 14px; }
+.credits dd { margin: 0 0 8px; font: 24px/1.1 var(--display); }
+.bottom { margin: 56px 0 0; padding-top: 22px; border-top: 2px solid #23212e; font-size: 15px; color: var(--dim); text-align: center; }
 
-.bottom { padding: 28px 16px 40px; text-align: center; font-size: 15px; color: var(--dim); background: var(--deep); }
-.bottom p { margin: 0 auto 6px; }
+/* --- phones ---------------------------------------------------------------------------- */
 
-/* --- phones -------------------------------------------------------------------- */
-
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   :root { --tile: 48px; }
   body { font-size: 17px; }
-  .floor { padding: var(--tile) 12px; }
-  .room { padding: 26px 20px 28px; }
-  h2 { font-size: 44px; }
-  .play { font-size: 44px; padding: 10px 36px 14px; }
-  .shots, .controls, .credits { grid-template-columns: 1fr; }
+  .wrap { padding: 0 16px; }
+  .hero { padding: 36px 0 56px; }
+  .hero .wrap, .band .wrap, .cards, .weapons, .cols { grid-template-columns: 1fr; }
+  .hero .wrap, .band .wrap { gap: 32px; }
+  .band.flip .shot { order: 0; }
+  .band { padding: 56px 0; }
+  .band h2 { font-size: 60px; }
+  .new h2, .arsenal h2, .end h2 { font-size: 44px; }
+  .play { font-size: 38px; }
 }

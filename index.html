@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deep Descent</title>
-<meta name="description" content="A roguelite dungeon shooter by Purify Games. Five chapters, five bosses, three weapons. Play it free in your browser.">
+<meta name="description" content="A roguelite dungeon shooter by Purify Games. Five chapters, five bosses, six weapons. Play it free in your browser.">
 <meta property="og:title" content="Deep Descent">
 <meta property="og:description" content="A roguelite dungeon shooter by Purify Games. Play it free in your browser.">
 <meta property="og:image" content="assets/banner.png">
@@ -17,157 +17,190 @@
 </head>
 <body>
 
-<main>
-
-<section class="floor crypt" aria-labelledby="play-title">
-  <div class="room hero">
-    <h1 id="play-title" class="title">Deep Descent</h1>
-    <p class="lede">A roguelite dungeon shooter. Clear the rooms, spend your coins, beat the boss at the bottom of each chapter, and keep going down.</p>
-
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <a class="tag" href="#new">New: v4.0 Forge</a>
+      <h1 class="title" id="top">Deep Descent</h1>
+      <p class="lede">A roguelite dungeon shooter. Clear the rooms, spend your coins, beat the boss at the bottom of each chapter, and keep going down.</p>
+      <div class="actions">
+        <button class="play js-play" type="button">Play</button>
+        <button class="secondary" id="fullscreen" type="button" hidden>Full screen</button>
+        <a class="secondary" href="https://purify-games.itch.io/deep-descent">itch.io</a>
+      </div>
+      <p class="fine" id="screen-note">Free in your browser, about 14 MB. Keyboard and mouse, or a phone or tablet held sideways. Needs WebGL 2: current Chrome, Firefox, Edge or Safari.</p>
+    </div>
     <div class="screen" id="screen">
-      <img class="poster" src="assets/shots/crypt.png" alt="" width="1920" height="1080">
-      <button class="play" id="play" type="button">Play</button>
+      <img src="assets/shots/crypt.png" alt="A fight in the Crypt, stage 0-2" width="1875" height="1055">
+      <div class="over"><button class="play js-play" type="button">Play here</button></div>
     </div>
+  </div>
+</header>
 
-    <div class="screen-actions">
-      <button class="secondary" id="fullscreen" type="button" hidden>Full screen</button>
-      <a class="secondary" href="play/" id="own-page">Open on its own page</a>
-      <a class="secondary" href="https://purify-games.itch.io/deep-descent">Play on itch.io</a>
+<section class="new" id="new" aria-labelledby="new-title">
+  <div class="wrap">
+    <p class="kicker">New in v4.0</p>
+    <h2 id="new-title">The Forge update</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Weekly Descent</h3>
+        <p>One seed for everyone, all week. Race to 4-4 on the online boards, or play fully offline.</p>
+      </article>
+      <article class="card">
+        <h3>Scrap and statues</h3>
+        <p>Carry Scrap to an extractor to keep it, craft in the Workshop, build statues in the Hall. 30 achievements.</p>
+      </article>
+      <article class="card">
+        <h3>The Chainsaw</h3>
+        <p>Hold fire and it bites. Every weapon is now in her hands, turning to your aim.</p>
+      </article>
     </div>
-    <p class="fine" id="screen-note">Free, about 24 MB to load. Keyboard and mouse, or a phone or tablet held sideways; on a phone, open the game on its own page. Needs a browser with WebGL 2: current Chrome, Firefox, Edge or Safari.</p>
   </div>
 </section>
 
-<div class="wall crypt-wall" aria-hidden="true"></div>
+<div class="wall w-crypt" aria-hidden="true"></div>
+<section class="band crypt" aria-labelledby="c1">
+  <div class="wrap">
+    <div class="shot"><img src="assets/shots/crypt.png" alt="A room in the Crypt with two archers" loading="lazy" width="1875" height="1055"></div>
+    <div>
+      <h2 id="c1">Crypt</h2>
+      <p class="stage">Stages 0-0 to 0-4</p>
+      <p>You start with the Pistol and five hearts. Every floor is a tree of rooms:</p>
+      <ol class="steps">
+        <li><span><strong>Clear the room.</strong> The doors lock until every enemy is down.</span></li>
+        <li><span><strong>Pick up the coins.</strong> They are your score, and your money.</span></li>
+        <li><span><strong>Shop and open chests.</strong> Upgrades stack into a build; curses pay well and cost you.</span></li>
+        <li><span><strong>Take the portal down.</strong></span></li>
+      </ol>
+      <dl class="band-meta"><dt>Enemies</dt><dd>Slimes, archers</dd><dt>Boss</dt><dd>The Brute</dd></dl>
+    </div>
+  </div>
+</section>
 
-<section class="floor forest" aria-labelledby="weapons-title">
-  <div class="room">
-    <p class="chapter">Chapter 2, Forest</p>
-    <h2 id="weapons-title">Two hands, five weapons</h2>
-    <p>You start with the Pistol and can carry two weapons. Shops sometimes sell another; trade the one in your hand and you can swap back for free before you leave. Every Damage upgrade makes all of them hit harder.</p>
+<div class="wall w-forest" aria-hidden="true"></div>
+<section class="band forest flip" aria-labelledby="c2">
+  <div class="wrap">
+    <div class="shot"><img src="assets/shots/forest.png" alt="Dashers in the Forest" loading="lazy" width="1875" height="1055"></div>
+    <div>
+      <h2 id="c2">Forest</h2>
+      <p class="stage">Stages 1-0 to 1-4</p>
+      <p>Dashers rush you. Enemies come in groups that play off each other, so pick your target.</p>
+      <dl class="band-meta"><dt>Joins</dt><dd>Dashers</dd><dt>Boss</dt><dd>The Gunner</dd></dl>
+    </div>
+  </div>
+</section>
+
+<div class="wall w-glacier" aria-hidden="true"></div>
+<section class="band glacier" aria-labelledby="c3">
+  <div class="wrap">
+    <div class="shot"><img src="assets/shots/glacier.png" alt="A slime swarm on the Glacier" loading="lazy" width="1875" height="1055"></div>
+    <div>
+      <h2 id="c3">Glacier</h2>
+      <p class="stage">Stages 2-0 to 2-4</p>
+      <p>Bouncers ricochet round the room and speed up at every wall. Shops start selling the Chainsaw. In December, Claus of the Depths waits at 2-4.</p>
+      <dl class="band-meta"><dt>Joins</dt><dd>Bouncers</dd><dt>Boss</dt><dd>The Summoner</dd></dl>
+    </div>
+  </div>
+</section>
+
+<div class="wall w-forge" aria-hidden="true"></div>
+<section class="band forge flip" aria-labelledby="c4">
+  <div class="wrap">
+    <div class="shot"><img src="assets/shots/forge.png" alt="Embers and their fire in the Forge" loading="lazy" width="1875" height="1055"></div>
+    <div>
+      <h2 id="c4">Forge</h2>
+      <p class="stage">Stages 3-0 to 3-4</p>
+      <p>Embers leave a burning trail and fire rings of shots. The Railgun is for sale: slow to fire, fast to fly, and it pierces.</p>
+      <dl class="band-meta"><dt>Joins</dt><dd>Embers</dd><dt>Boss</dt><dd>The Juggernaut</dd></dl>
+    </div>
+  </div>
+</section>
+
+<div class="wall w-void" aria-hidden="true"></div>
+<section class="band void" aria-labelledby="c5">
+  <div class="wrap">
+    <div class="shot"><img src="assets/shots/boss.png" alt="The Overlord, the last boss" loading="lazy" width="1875" height="1055"></div>
+    <div>
+      <h2 id="c5">Void</h2>
+      <p class="stage">Stages 4-0 to 4-4, then the Arcade</p>
+      <p>Laser snipers, and at the very bottom the Overlord, in three acts. Beat him and your gold is banked as cash. The Arcade goes on from there, loop after named loop.</p>
+      <dl class="band-meta"><dt>Joins</dt><dd>Laser snipers</dd><dt>Boss</dt><dd>The Overlord</dd></dl>
+    </div>
+  </div>
+</section>
+
+<section class="arsenal" aria-labelledby="arsenal-title">
+  <div class="wrap">
+    <p class="kicker">Two hands</p>
+    <h2 id="arsenal-title">Six weapons, carry two</h2>
     <ul class="weapons">
-      <li>
-        <img src="assets/weapons/pistol.png" alt="" width="48" height="48">
-        <div>
-          <h3>Pistol</h3>
-          <p>Steady and mid range. The one you start with.</p>
-        </div>
-      </li>
-      <li>
-        <img src="assets/weapons/sniper.png" alt="" width="48" height="48">
-        <div>
-          <h3>Sniper Rifle</h3>
-          <p>Long range and slow. Half damage up close, full at six tiles, double at eight and triple from ten, and each shot bounces off one wall.</p>
-        </div>
-      </li>
-      <li>
-        <img src="assets/weapons/shotgun.png" alt="" width="48" height="48">
-        <div>
-          <h3>Shotgun</h3>
-          <p>Three pellets in a tight cone, each as strong as a Pistol shot: triple damage when they all land, but only at short range.</p>
-        </div>
-      </li>
-      <li>
-        <img src="assets/weapons/railgun.png" alt="" width="48" height="48">
-        <div>
-          <h3>Railgun</h3>
-          <p>Slow to fire and fast to fly. Two and a half times the Sniper at the same distance, weak up close and triple damage past ten tiles. Pierces. Sold from the Forge.</p>
-        </div>
-      </li>
-      <li>
-        <img src="assets/weapons/swing_blade.png" alt="" width="48" height="48">
-        <div>
-          <h3>Swing Blade</h3>
-          <p>A blade, not a gun: it spins round you five times in a row, hitting everything close on every turn and knocking enemy shots back the way they came, then rests a second.</p>
-        </div>
-      </li>
+      <li><img src="assets/weapons/pistol.png" alt="" width="48" height="48"><div><h3>Pistol</h3><p>Steady, mid range. The one you start with.</p></div></li>
+      <li><img src="assets/weapons/sniper.png" alt="" width="48" height="48"><div><h3>Sniper Rifle</h3><p>Hits harder the farther away. Bounces off a wall.</p></div></li>
+      <li><img src="assets/weapons/shotgun.png" alt="" width="48" height="48"><div><h3>Shotgun</h3><p>Three pellets. Brutal up close, useless far off.</p></div></li>
+      <li><img src="assets/weapons/swing_blade.png" alt="" width="48" height="48"><div><h3>Swing Blade</h3><p>Spins round you and knocks enemy shots back.</p></div></li>
+      <li><img src="assets/weapons/chainsaw.png" alt="" width="48" height="48"><div><h3>Chainsaw</h3><p>Hold fire and it bites. Let it rest or it slows.</p></div></li>
+      <li><img src="assets/weapons/railgun.png" alt="" width="48" height="48"><div><h3>Railgun</h3><p>Slow, fast-flying, pierces. Deadly at range.</p></div></li>
     </ul>
+    <details>
+      <summary>The exact numbers</summary>
+      <ul>
+        <li>Sniper: half damage up close, full at six tiles, double at eight, triple from ten.</li>
+        <li>Shotgun: each pellet as strong as a Pistol shot, triple damage when all three land.</li>
+        <li>Railgun: two and a half times the Sniper at the same distance, triple past ten tiles.</li>
+        <li>Swing Blade: five spins in a row, then rests a second.</li>
+        <li>Chainsaw: 0.6x Strength per bite; four seconds without a break halves its speed until it rests a second.</li>
+      </ul>
+    </details>
   </div>
 </section>
 
-<div class="wall forest-wall" aria-hidden="true"></div>
-
-<section class="floor glacier" aria-labelledby="run-title">
-  <div class="room">
-    <p class="chapter">Chapter 3, Glacier</p>
-    <h2 id="run-title">How a floor goes</h2>
-    <ol class="steps">
-      <li><strong>Clear the rooms.</strong> The doors lock until every enemy is down. Slimes, archers, dashers, bouncers, embers and laser snipers come in groups that play off each other.</li>
-      <li><strong>Pick up the coins.</strong> They are your score, and your money.</li>
-      <li><strong>Shop and open chests.</strong> Upgrades stack into a build: Frost Rounds, Sniper Piercing, Magnet, Vampirism, Dash, Second Wind and more. Curses like Greed and Brittle pay well and cost you something.</li>
-      <li><strong>Take the portal down.</strong> Every fifth floor ends with a boss that has its own move to learn.</li>
-    </ol>
-    <p>Five chapters of five floors, then an endless Arcade. Every floor comes from a seed, so a save code from the pause menu brings you back to the same floor in any browser.</p>
-    <p>Easy gives you more hearts. Hard changes how enemies fight: slimes split, archers lead their shots, dashers dash three times in a row. Beat the game once and Boss Rush opens: all five bosses back to back, against the clock, with two free picks between them.</p>
-  </div>
-</section>
-
-<div class="wall glacier-wall" aria-hidden="true"></div>
-
-<section class="floor forge" aria-labelledby="shots-title">
-  <div class="room wide">
-    <p class="chapter">Chapter 4, Forge</p>
-    <h2 id="shots-title">Down through the chapters</h2>
-    <ul class="shots">
-      <li><a href="assets/shots/crypt.png"><img src="assets/shots/crypt.png" alt="A fight in the Crypt, stage 0-2" loading="lazy" width="1920" height="1080"></a><span>Crypt</span></li>
-      <li><a href="assets/shots/forest.png"><img src="assets/shots/forest.png" alt="Dashers in the Forest, stage 1-2" loading="lazy" width="1920" height="1080"></a><span>Forest</span></li>
-      <li><a href="assets/shots/glacier.png"><img src="assets/shots/glacier.png" alt="A slime swarm on the Glacier, with the Swing Blade and Frost Rounds" loading="lazy" width="1920" height="1080"></a><span>Glacier</span></li>
-      <li><a href="assets/shots/forge.png"><img src="assets/shots/forge.png" alt="Embers and their fire in the Forge, with the Railgun" loading="lazy" width="1920" height="1080"></a><span>Forge</span></li>
-      <li><a href="assets/shots/void.png"><img src="assets/shots/void.png" alt="Laser snipers in the Void" loading="lazy" width="1920" height="1080"></a><span>Void</span></li>
-      <li><a href="assets/shots/boss.png"><img src="assets/shots/boss.png" alt="The Overlord, the last boss" loading="lazy" width="1920" height="1080"></a><span>The Overlord</span></li>
+<footer class="end" aria-labelledby="modes-title">
+  <div class="wrap">
+    <p class="kicker">Ways down</p>
+    <h2 id="modes-title">Modes</h2>
+    <ul class="modes">
+      <li class="chip">Descent<small>25 floors, then Arcade</small></li>
+      <li class="chip">Weekly Descent<small>one seed, all week</small></li>
+      <li class="chip">Boss Rush<small>five bosses, one clock</small></li>
+      <li class="chip">Easy · Normal · Hard<small>Hard changes how enemies fight</small></li>
     </ul>
-  </div>
-</section>
 
-<div class="wall forge-wall" aria-hidden="true"></div>
-
-<section class="floor void" aria-labelledby="controls-title">
-  <div class="room">
-    <p class="chapter">Chapter 5, Void</p>
-    <h2 id="controls-title">Controls</h2>
-    <div class="controls">
-      <table>
-        <caption>Keyboard and mouse</caption>
-        <tbody>
-          <tr><th scope="row">Move</th><td>WASD or arrow keys</td></tr>
-          <tr><th scope="row">Shoot</th><td>Hold the left mouse button, or Space</td></tr>
-          <tr><th scope="row">Swap weapon</th><td>Q or the mouse wheel</td></tr>
-          <tr><th scope="row">Dash</th><td>Shift, once you own the Dash</td></tr>
-          <tr><th scope="row">Use</th><td>E, for chests, shops and the portal</td></tr>
-          <tr><th scope="row">Pause</th><td>Esc or P</td></tr>
-          <tr><th scope="row">Sound, screen shake</th><td>M, N</td></tr>
-        </tbody>
-      </table>
-      <table>
-        <caption>Touch</caption>
-        <tbody>
-          <tr><th scope="row">Move</th><td>Left thumb, anywhere on the left</td></tr>
-          <tr><th scope="row">Shoot</th><td>Right thumb: it shoots the way you push</td></tr>
-          <tr><th scope="row">Dash, Swap</th><td>The buttons above the right thumb</td></tr>
-          <tr><th scope="row">Use</th><td>The button that lights up by the left thumb</td></tr>
-          <tr><th scope="row">Pause</th><td>The button next to the stage name</td></tr>
-        </tbody>
-      </table>
+    <div class="cols">
+      <div>
+        <h3>Keyboard and mouse</h3>
+        <dl class="keys">
+          <dt><kbd>WASD</kbd></dt><dd>Move</dd>
+          <dt><kbd>Mouse</kbd> <kbd>Space</kbd></dt><dd>Shoot</dd>
+          <dt><kbd>Q</kbd> <kbd>Wheel</kbd></dt><dd>Swap weapon</dd>
+          <dt><kbd>Shift</kbd></dt><dd>Dash, once you own it</dd>
+          <dt><kbd>E</kbd></dt><dd>Chests, shops, portal</dd>
+          <dt><kbd>Esc</kbd> <kbd>P</kbd></dt><dd>Pause</dd>
+          <dt><kbd>M</kbd> <kbd>N</kbd></dt><dd>Sound, screen shake</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>Touch</h3>
+        <dl class="keys">
+          <dt>Left thumb</dt><dd>Move</dd>
+          <dt>Right thumb</dt><dd>Shoot the way you push</dd>
+          <dt>Buttons</dt><dd>Dash, swap, use, pause</dd>
+        </dl>
+        <p class="fine">Scores and settings stay in this browser. A save code carries a run anywhere.</p>
+      </div>
+      <div>
+        <h3>Credits</h3>
+        <dl class="credits">
+          <dt>Developing studio</dt><dd>Purify Games</dd>
+          <dt>Game designer and lead developer</dt><dd>Oleksandr Heza</dd>
+          <dt>Artists</dt><dd>Oleksandr and Davyd Heza</dd>
+          <dt>UI and HUD</dt><dd>Claude</dd>
+          <dt>QC</dt><dd>Oleksandr Heza and Claude</dd>
+        </dl>
+      </div>
     </div>
-    <p>Your settings and best scores stay in this browser. Clearing the site's data resets them; a save code carries a run anywhere.</p>
 
-    <h2 id="credits-title">Credits</h2>
-    <dl class="credits">
-      <div><dt>Developing studio</dt><dd>Purify Games</dd></div>
-      <div><dt>Game designer</dt><dd>Oleksandr Heza</dd></div>
-      <div><dt>Lead developer</dt><dd>Oleksandr Heza</dd></div>
-      <div><dt>Artists</dt><dd>Oleksandr and Davyd Heza</dd></div>
-      <div><dt>UI and HUD</dt><dd>Claude</dd></div>
-      <div><dt>QC</dt><dd>Oleksandr Heza and Claude</dd></div>
-    </dl>
+    <p class="bottom">Deep Descent v4.0.0 "Forge", made by Purify Games with Godot. AI (Claude) helped port the game to Godot and finalise its gameplay. <a href="#top">Back to the top</a> or <a href="https://purify-games.itch.io/deep-descent">find it on itch.io</a></p>
   </div>
-</section>
-
-</main>
-
-<footer class="bottom">
-  <p>Deep Descent v4.0.0 "Forge", made by Purify Games with Godot. AI (Claude) helped port the game to Godot and finalise its gameplay.</p>
-  <p><a href="#play-title">Back to the top</a> or <a href="https://purify-games.itch.io/deep-descent">find it on itch.io</a></p>
 </footer>
 
 <script src="site.js"></script>
